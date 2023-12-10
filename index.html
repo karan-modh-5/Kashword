@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SHA256 Hash Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: #fff;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #333;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"],
+    textarea {
+      width: calc(100% - 22px); /* Adjusted width for input fields */
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #777;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: #444;
+      color: #fff;
+    }
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+    .output-area {
+      background-color: #555;
+      padding: 15px;
+      border: 1px solid #777;
+      border-radius: 4px;
+      margin-top: 20px;
+      position: relative;
+    }
+    .output-area textarea {
+      width: calc(100% - 22px); /* Adjusted width for textarea */
+      height: 100px;
+      border: 1px solid #777;
+      border-radius: 4px;
+      padding: 10px;
+      resize: none;
+      font-size: 14px;
+      background-color: #666;
+      color: #fff;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .copy-btn:hover {
+      background-color: #45a049;
+    }
+
+    /* Media Query for Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+      }
+      input[type="text"],
+      textarea {
+        width: calc(100% - 20px);
+      }
+      .output-area textarea {
+        width: calc(100% - 20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SHA256 Hash Generator</h1>
+    <div>
+      <label for="input">Enter Text:</label>
+      <input type="text" id="input" name="input" placeholder="Type your text here..." required>
+      <button type="button" class="btn btn-primary" onclick="generateHash()">Generate Hash</button>
+    </div>
+    <div class="output-area">
+      <label for="output">First 16 Characters of the Hash:</label>
+      <textarea id="output" readonly></textarea>
+      <button id="copy" class="copy-btn" onclick="copyHash()">Copy</button>
+    </div>
+  </div>
+
+  <script>
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder('utf-8').encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
+      return hashHex;
+    }
+
+    function generateHash() {
+      const inputText = document.getElementById('input').value;
+      sha256(inputText).then(hash => {
+        const first16Chars = hash.substring(0, 16);
+        document.getElementById('output').value = first16Chars;
+      });
+    }
+
+    function copyHash() {
+      const output = document.getElementById('output');
+      output.select();
+      document.execCommand('copy');
+      alert('First 16 characters of the hash copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
