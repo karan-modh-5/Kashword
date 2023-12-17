@@ -2,80 +2,146 @@
 <html lang="en">
 <head>
   <title>Kashword Generator</title>
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+  @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Caveat&family=Exo:wght@500&family=Share+Tech+Mono&family=Silkscreen&display=swap');
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #111;
-      color: #fff;
-    }
-    .container {
-      width: 80%;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #333;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      position: relative;
-    }
-    h1 {
+      width: 100vw;
+      height: 100vh;
+      background: #222; /* Dark background */
+      display: flex;
+      align-items: center;
       text-align: center;
+      justify-content: center;
+      place-items: center;
+      overflow: hidden;
+      font-family: 'Exo', sans-serif;
+      color: #fff; /* Light text color */
     }
-    label {
-      font-weight: bold;
+
+    .container {
+      position: relative;
+      width: 350px;
+      height: 500px;
+      border-radius: 20px;
+      padding: 40px;
+      box-sizing: border-box;
+      background: #222; /* Dark container background */
+      box-shadow: 14px 14px 20px #111, -14px -14px 20px #333; /* Neumorphic shadow */
     }
-    input[type="text"],
-    input[type="password"],
-    textarea {
-      width: calc(100% - 22px);
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #777;
-      border-radius: 4px;
-      font-size: 16px;
-      background-color: #444;
-      color: #fff;
+
+    .brand-logo {
+      height: 100px;
+      width: 100px;
+	  object-fit: fill;
+	  margin: auto;
+      border-radius: 50%;
+      box-sizing: border-box;
+      box-shadow: 7px 7px 10px #111, -7px -7px 10px #333; /* Neumorphic shadow */
     }
-    .btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
+
+    .brand-title {
+	  padding-top: 10px;
+      margin-top: 10px;
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #1DA1F2;
+      letter-spacing: 1px;
+    }
+
+    .inputs {
+      text-align: left;
+      margin-top: 30px;
+    }
+
+    label,
+    input,
+    button {
       display: block;
       width: 100%;
-      text-align: center;
+	  font-size: 14px;
+      padding: 0;
+      border: none;
+      outline: none;
+      box-sizing: border-box;
     }
-    .btn-primary {
-      background-color: #007bff;
+
+    label {
+      margin-bottom: 4px;
+    }
+
+    label:nth-of-type(2) {
+      margin-top: 12px;
+    }
+
+    input[type="password"],
+    textarea {
+      background: #222; /* Dark input background */
+      padding: 10px;
+      padding-left: 20px;
+      height: 50px;
+      font-size: 14px;
+      border-radius: 50px;
+      box-shadow: inset 6px 6px 6px #111, inset -6px -6px 6px #333; /* Neumorphic inset shadow */
+      color: #fff; /* Light text color */
+    }
+
+    input[type="text"],
+    textarea {
+      background: #222; /* Dark input background */
+      padding: 10px;
+      padding-left: 20px;
+      height: 50px;
+      font-size: 14px;
+      border-radius: 50px;
+      box-shadow: inset 6px 6px 6px #111, inset -6px -6px 6px #333; /* Neumorphic inset shadow */
+      color: #fff; /* Light text color */
+    }
+
+    input::placeholder {
+      color: #5c5470; /* Placeholder color */
+    }
+
+    .btn {
       color: #fff;
+      margin-top: 20px;
+      background: #1DA1F2;
+      height: 40px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 900;
+      box-shadow: 6px 6px 6px #111, -6px -6px 6px #333; /* Neumorphic shadow */
+      transition: 0.5s;
     }
-    .btn-primary:hover {
-      background-color: #0056b3;
+
+    .btn:hover {
+      box-shadow: none;
     }
+
     .output-area {
-      background-color: #555;
-      padding: 15px;
-      border: 1px solid #777;
-      border-radius: 4px;
+      background-color: #222; /* Dark output area background */
+      padding: 5px;
       margin-top: 20px;
       position: relative;
     }
+
     .output-area textarea {
       width: calc(100% - 22px);
-      height: 100px;
-      border: 1px solid #777;
+      margin-bottom: 5px;
+	  height: 50px;
+      border: 1px solid #222; /* Dark border */
       border-radius: 4px;
       padding: 10px;
       resize: none;
       font-size: 14px;
-      background-color: #666;
-      color: #fff;
+      background-color: #222; /* Dark textarea background */
+      color: #fff; /* Light text color */
     }
+
     .copy-btn {
-      position: absolute;
       top: 10px;
       right: 10px;
       background-color: #4caf50;
@@ -86,17 +152,21 @@
       cursor: pointer;
       font-size: 14px;
     }
+
     .copy-btn:hover {
       background-color: #45a049;
     }
+
     .reveal-password {
       position: absolute;
-      top: 12px;
-      right: 10px;
+	  font-size: 12px;
+      top: 18px;
+      right: 15px;
       cursor: pointer;
       color: #007bff;
       z-index: 1;
     }
+
     .input-wrapper {
       position: relative;
     }
@@ -104,17 +174,17 @@
 </head>
 <body>
   <div class="container">
-    <h1>Kashword Generator</h1>
-    <div>
-      <label for="input">Enter Text:</label>
+    <img class="brand-logo" src="/img/favicon.ico" >
+    <div class="brand-title" >Kashword</div>
+    <div class="inputs">
+      <label for="input"></label>
       <div class="input-wrapper">
-        <input type="password" id="input" name="input" placeholder="Type your text here..." required>
+        <input type="password" id="input" name="input" placeholder="type here..." required>
         <span class="reveal-password" onclick="revealPassword()">Show</span>
+        <button type="button" class="btn btn-primary" onclick="generateHash()">Generate Kashword</button>
       </div>
-      <button type="button" class="btn btn-primary" onclick="generateHash()">Generate Hash</button>
     </div>
     <div class="output-area">
-      <label for="output">First 16 Characters of the Hash:</label>
       <textarea id="output" readonly></textarea>
       <button id="copy" class="copy-btn" onclick="copyHash()">Copy</button>
     </div>
