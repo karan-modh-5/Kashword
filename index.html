@@ -18,6 +18,7 @@
       background-color: #333;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      position: relative;
     }
     h1 {
       text-align: center;
@@ -26,8 +27,9 @@
       font-weight: bold;
     }
     input[type="text"],
+    input[type="password"],
     textarea {
-      width: calc(100% - 22px); /* Adjusted width for input fields */
+      width: calc(100% - 22px);
       padding: 10px;
       margin-bottom: 20px;
       border: 1px solid #777;
@@ -62,7 +64,7 @@
       position: relative;
     }
     .output-area textarea {
-      width: calc(100% - 22px); /* Adjusted width for textarea */
+      width: calc(100% - 22px);
       height: 100px;
       border: 1px solid #777;
       border-radius: 4px;
@@ -87,28 +89,28 @@
     .copy-btn:hover {
       background-color: #45a049;
     }
-
-    /* Media Query for Responsive Design */
-    @media (max-width: 768px) {
-      .container {
-        width: 90%;
-      }
-      input[type="text"],
-      textarea {
-        width: calc(100% - 20px);
-      }
-      .output-area textarea {
-        width: calc(100% - 20px);
-      }
+    .reveal-password {
+      position: absolute;
+      top: 12px;
+      right: 10px;
+      cursor: pointer;
+      color: #007bff;
+      z-index: 1;
+    }
+    .input-wrapper {
+      position: relative;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Kashword</h1>
+    <h1>Kashword Generator</h1>
     <div>
       <label for="input">Enter Text:</label>
-      <input type="text" id="input" name="input" placeholder="Type your text here..." required>
+      <div class="input-wrapper">
+        <input type="password" id="input" name="input" placeholder="Type your text here..." required>
+        <span class="reveal-password" onclick="revealPassword()">Show</span>
+      </div>
       <button type="button" class="btn btn-primary" onclick="generateHash()">Generate Hash</button>
     </div>
     <div class="output-area">
@@ -140,6 +142,17 @@
       output.select();
       document.execCommand('copy');
       alert('First 16 characters of the hash copied to clipboard!');
+    }
+
+    function revealPassword() {
+      const input = document.getElementById('input');
+      if (input.type === 'password') {
+        input.type = 'text';
+        document.querySelector('.reveal-password').innerText = 'Hide';
+      } else {
+        input.type = 'password';
+        document.querySelector('.reveal-password').innerText = 'Show';
+      }
     }
   </script>
 </body>
