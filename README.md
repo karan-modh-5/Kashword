@@ -1,5 +1,6 @@
 # Kashword
-https://karan-modh-5.github.io/Kashword/
+Website: https://karan-modh-5.github.io/Kashword/
+Python script: https://github.com/karan-modh-5/Kashword/blob/main/kashword_v1.3.py?raw=true
 
 ## **About Kashword: Empowering Your Password Security**
 
@@ -19,6 +20,8 @@ Our mission is to give you control over your password security. Even if a websit
 - **User Empowerment:** You dictate your password logic, providing an additional layer of protection for your online presence.
 - **Sharing Made Safe:** Share your hashed password with trusted individuals, granting them access without disclosing your actual password.
 - **Immune to Rainbow Table Attacks:** Your password will be unique for every site, so it is immune to rainbow table attacks.
+
+#### *Note:* we always recommend you to use Kashword python script if not possible then use the Kashword website. Both options are safe and reliable, but the python script gives you more control and flexibility over the password generation process.
 
 If you want to take your security to the next level, you should check out Pashword. It uses Scrypt and SHA3-512 on multiple user inputs, which makes it much harder to brute-force. 
 https://pashword.app/
