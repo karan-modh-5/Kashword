@@ -1,4 +1,4 @@
-### Kashword
+# Kashword
 https://karan-modh-5.github.io/Kashword/
 
 ## **About Kashword: Empowering Your Password Security**
