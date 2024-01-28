@@ -1,6 +1,6 @@
 # Kashword
 Website: https://karan-modh-5.github.io/Kashword/
-Python script: https://github.com/karan-modh-5/Kashword/blob/main/kashword_v1.3.py?raw=true
+Python script: https://github.com/karan-modh-5/Kashword/blob/main/kashword_v1.3.py?
 
 ## **About Kashword: Empowering Your Password Security**
 
