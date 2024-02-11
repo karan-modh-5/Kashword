@@ -30,7 +30,7 @@ e = "-" * 1000 + "-" * 100 + "" * 200
 r = "-+" * 4000
 
 # Get user input for a password (masked input)
-clearpass = getpass.getpass(prompt='Enter your password: ', stream=None)
+clearpass = getpass.getpass(prompt='Enter Cypher: ', stream=None)
 # Hash the entered password using SHA256
 hash = hashlib.new("SHA256")
 hash.update(clearpass.encode())
