@@ -97,7 +97,7 @@
       padding-left: 20px;
       height: 50px;
       font-size: 14px;
-      border-radius: 50px;
+      border-radius: 15px;
       box-shadow: inset 6px 6px 6px #111, inset -6px -6px 6px #333; /* Neumorphic inset shadow */
       color: #fff; /* Light text color */
       margin-bottom: 15px; /* Adjusted margin-bottom */
@@ -175,6 +175,7 @@
       cursor: pointer;
       color: #007bff;
       z-index: 1;
+
     }
 
     /* Input wrapper styles */
@@ -247,16 +248,26 @@
     }
 
     // Function to reveal or hide password
-    function revealPassword() {
-      const input = document.getElementById('input');
-      if (input.type === 'password') {
-        input.type = 'text';
-        document.querySelector('.reveal-password').innerText = 'Hide';
-      } else {
-        input.type = 'password';
-        document.querySelector('.reveal-password').innerText = 'Show';
-      }
-    }
+function revealPassword() {
+  const input = document.getElementById('input');
+  if (input.type === 'password') {
+    input.type = 'text';
+    document.querySelector('.reveal-password').innerText = 'Hide';
+    input.style.color = '#fff'; // Maintain text color
+    input.style.backgroundColor = '#222'; // Maintain background color
+    input.style.boxShadow = 'inset 6px 6px 6px #111, inset -6px -6px 6px #333'; // Maintain box shadow
+    input.style.width = '267px'; // Maintain width
+    input.style.height = '50px'; // Maintain height
+    input.style.marginBottom = '15px'; // Maintain margin
+    input.style.padding = '20px'; // Maintain padding
+    input.style.borderRadius = '15px'; // Maintain Border Radius
+    input.style.paddingRight = '15px'; // Maintain Padding Right
+
+  } else {
+    input.type = 'password';
+    document.querySelector('.reveal-password').innerText = 'Show';
+  }
+}
   </script>
 </body>
 </html>
