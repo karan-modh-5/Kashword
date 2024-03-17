@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
   <title>Kashword Generator</title>
+  <!-- Link to favicon -->
   <link rel="icon" type="image/x-icon" href="/Kashword/image/favicon.ico?">
+  <!-- Responsive viewport meta tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-  @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Caveat&family=Exo:wght@500&family=Share+Tech+Mono&family=Silkscreen&display=swap');
+    /* Importing Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Caveat&family=Exo:wght@500&family=Share+Tech+Mono&family=Silkscreen&display=swap');
 
+    /* General styles for the body */
     body {
       margin: 0;
       width: 100vw;
@@ -22,10 +26,11 @@
       color: #fff; /* Light text color */
     }
 
+    /* Container styles */
     .container {
       position: relative;
       width: 350px;
-      height: 500px;
+      height: 550px;
       border-radius: 20px;
       padding: 40px;
       box-sizing: border-box;
@@ -33,18 +38,20 @@
       box-shadow: 14px 14px 20px #111, -14px -14px 20px #333; /* Neumorphic shadow */
     }
 
+    /* Brand logo styles */
     .brand-logo {
       height: 100px;
       width: 100px;
-	  object-fit: fill;
-	  margin: auto;
+      object-fit: fill;
+      margin: auto;
       border-radius: 50%;
       box-sizing: border-box;
       box-shadow: 7px 7px 10px #111, -7px -7px 10px #333; /* Neumorphic shadow */
     }
 
+    /* Brand title styles */
     .brand-title {
-	  padding-top: 10px;
+      padding-top: 10px;
       margin-top: 10px;
       font-weight: 900;
       font-size: 1.8rem;
@@ -52,23 +59,26 @@
       letter-spacing: 1px;
     }
 
+    /* Input container styles */
     .inputs {
       text-align: left;
       margin-top: 30px;
     }
 
+    /* Common styles for label, input, and button */
     label,
     input,
     button {
       display: block;
       width: 100%;
-	  font-size: 14px;
+      font-size: 14px;
       padding: 0;
       border: none;
       outline: none;
       box-sizing: border-box;
     }
 
+    /* Styles for labels */
     label {
       margin-bottom: 4px;
     }
@@ -77,7 +87,9 @@
       margin-top: 12px;
     }
 
+    /* Input styles for password, number, and textarea */
     input[type="password"],
+    input[type="number"],
     textarea {
       background: #222; /* Dark input background */
       padding: 10px;
@@ -87,28 +99,18 @@
       border-radius: 50px;
       box-shadow: inset 6px 6px 6px #111, inset -6px -6px 6px #333; /* Neumorphic inset shadow */
       color: #fff; /* Light text color */
+      margin-bottom: 15px; /* Adjusted margin-bottom */
     }
 
-    input[type="text"],
-    textarea {
-      background: #222; /* Dark input background */
-      padding: 10px;
-      padding-left: 20px;
-      height: 50px;
-      font-size: 14px;
-      border-radius: 50px;
-      box-shadow: inset 6px 6px 6px #111, inset -6px -6px 6px #333; /* Neumorphic inset shadow */
-      color: #fff; /* Light text color */
-    }
-
+    /* Placeholder color */
     input::placeholder {
-      color: #5c5470; /* Placeholder color */
+      color: #5c5470;
     }
 
+    /* Button styles */
     .btn {
       color: #fff;
-      margin-top: 20px;
-      background: #1DA1F2;
+      background: #1DA1F0;
       height: 40px;
       border-radius: 20px;
       cursor: pointer;
@@ -117,10 +119,12 @@
       transition: 0.5s;
     }
 
+    /* Button hover effect */
     .btn:hover {
       box-shadow: none;
     }
 
+    /* Output area styles */
     .output-area {
       background-color: #222; /* Dark output area background */
       padding: 5px;
@@ -128,10 +132,11 @@
       position: relative;
     }
 
+    /* Output textarea styles */
     .output-area textarea {
       width: calc(100% - 22px);
-      margin-bottom: 5px;
-	  height: 50px;
+      margin-bottom: 25px; /* Adjusted margin-bottom */
+      height: 50px;
       border: 1px solid #222; /* Dark border */
       border-radius: 4px;
       padding: 10px;
@@ -141,9 +146,11 @@
       color: #fff; /* Light text color */
     }
 
+    /* Copy button styles */
     .copy-btn {
-      top: 10px;
-      right: 10px;
+      position: absolute;
+      bottom: 0px; /* Adjusted position */
+      right: 0px; /* Adjusted position */
       background-color: #4caf50;
       color: #fff;
       border: none;
@@ -153,13 +160,15 @@
       font-size: 14px;
     }
 
+    /* Copy button hover effect */
     .copy-btn:hover {
       background-color: #45a049;
     }
 
+    /* Reveal password styles */
     .reveal-password {
       position: absolute;
-	  font-size: 12px;
+      font-size: 12px;
       top: 18px;
       right: 15px;
       cursor: pointer;
@@ -167,6 +176,7 @@
       z-index: 1;
     }
 
+    /* Input wrapper styles */
     .input-wrapper {
       position: relative;
     }
@@ -174,39 +184,60 @@
 </head>
 <body>
   <div class="container">
+    <!-- Brand logo -->
     <img class="brand-logo" src="/Kashword/image/logo.png?" >
-    <div class="brand-title" >Kashword</div>
+    <!-- Brand title -->
+    <div class="brand-title">Kashword</div>
+    <!-- Inputs section -->
     <div class="inputs">
-      <label for="input"></label>
       <div class="input-wrapper">
+        <!-- Input field for entering text -->
         <input type="password" id="input" name="input" placeholder="type here..." required>
+        <!-- Span for revealing password -->
         <span class="reveal-password" onclick="revealPassword()">Show</span>
+        <!-- Input field for specifying output length -->
+        <input type="number" id="length" name="length" min="1" max="64" value="15" required style="color: #5c5470;">
+        <!-- Button for generating Kashword -->
         <button type="button" class="btn btn-primary" onclick="generateHash()">Generate Kashword</button>
       </div>
     </div>
+    <!-- Output area -->
     <div class="output-area">
+      <!-- Textarea for displaying Kashword -->
       <textarea id="output" readonly></textarea>
+      <!-- Button for copying Kashword to clipboard -->
       <button id="copy" class="copy-btn" onclick="copyHash()">Copy</button>
     </div>
   </div>
 
   <script>
+    // Function to compute SHA-256 hash of a message
     async function sha256(message) {
       const msgBuffer = new TextEncoder('utf-8').encode(message);
       const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
       const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
+      const hashHex = hashArray.map(b => ('00' + b.toString(15)).slice(-2)).join('');
       return hashHex;
     }
 
+    // Function to generate Kashword
     function generateHash() {
       const inputText = document.getElementById('input').value;
+      const outputLength = parseInt(document.getElementById('length').value);
+      // Check if output length is within the valid range
+      if (outputLength < 1 || outputLength > 64) {
+        alert("Output length must be between 1 and 64 characters.");
+        return;
+      }
+      // Compute SHA-256 hash and extract first characters
       sha256(inputText).then(hash => {
-        const first16Chars = hash.substring(0, 16);
-        document.getElementById('output').value = first16Chars;
+        const firstChars = hash.substring(0, outputLength);
+        // Display Kashword in the output textarea
+        document.getElementById('output').value = firstChars;
       });
     }
 
+    // Function to copy Kashword to clipboard
     function copyHash() {
       const output = document.getElementById('output');
       output.select();
@@ -214,6 +245,7 @@
       alert('Kashword copied to clipboard!');
     }
 
+    // Function to reveal or hide password
     function revealPassword() {
       const input = document.getElementById('input');
       if (input.type === 'password') {
