@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,8 @@
   <!-- Responsive viewport meta tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    /* CSS styles */
+
     /* Importing Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Caveat&family=Exo:wght@500&family=Share+Tech+Mono&family=Silkscreen&display=swap');
 
@@ -30,10 +31,10 @@
     /* Container styles */
     .container {
       position: relative;
-      width: 350px;
-      height: 550px;
-      border-radius: 20px;
-      padding: 40px;
+      width: 315px;
+      height: 510px;
+      border-radius: 17px;
+      padding: 34px;
       box-sizing: border-box;
       background: #222; /* Dark container background */
       box-shadow: 14px 14px 20px #111, -14px -14px 20px #333; /* Neumorphic shadow */
@@ -41,8 +42,8 @@
 
     /* Brand logo styles */
     .brand-logo {
-      height: 100px;
-      width: 100px;
+      height: 85px;
+      width: 85px;
       object-fit: fill;
       margin: auto;
       border-radius: 50%;
@@ -52,18 +53,18 @@
 
     /* Brand title styles */
     .brand-title {
-      padding-top: 10px;
-      margin-top: 10px;
+      padding-top: 8.5px;
+      margin-top: 8.5px;
       font-weight: 900;
-      font-size: 1.8rem;
-      color: #1DA1F2;
+      font-size: 1.53rem;
+      color: #0e8ef9;
       letter-spacing: 1px;
     }
 
     /* Input container styles */
     .inputs {
       text-align: left;
-      margin-top: 30px;
+      margin-top: 25.5px;
     }
 
     /* Common styles for label, input, and button */
@@ -72,7 +73,7 @@
     button {
       display: block;
       width: 100%;
-      font-size: 14px;
+      font-size: 11.9px;
       padding: 0;
       border: none;
       outline: none;
@@ -81,26 +82,36 @@
 
     /* Styles for labels */
     label {
-      margin-bottom: 4px;
+      margin-bottom: 3.4px;
     }
 
     label:nth-of-type(2) {
-      margin-top: 12px;
+      margin-top: 10.2px;
+    }
+	
+	.vault{
+      background: #222; /* Dark input background */
+      padding: 8.5px;
+      padding-left: 17px;
+      height: 42.5px;
+      font-size: 11.9px;
+      border-radius: 12.75px;
+      box-shadow: inset 3.5px 3.5px 3.5px #111, inset -3.5px -3.5px 3.5px #333; /* Neumorphic inset shadow */
+      color: #fff; /* Light text color */
+      margin-bottom: 12.75px; /* Adjusted margin-bottom */
     }
 
     /* Input styles for password, number, and textarea */
-    input[type="password"],
-    input[type="number"],
     textarea {
       background: #222; /* Dark input background */
-      padding: 10px;
-      padding-left: 20px;
-      height: 50px;
-      font-size: 14px;
-      border-radius: 15px;
-      box-shadow: inset 6px 6px 6px #111, inset -6px -6px 6px #333; /* Neumorphic inset shadow */
+      padding: 8.5px;
+      padding-left: 17px;
+      height: 42.5px;
+      font-size: 11.9px;
+      border-radius: 12.75px;
+      box-shadow: inset 3.5px 3.5px 3.5px #111, inset -3.5px -3.5px 3.5px #333; /* Neumorphic inset shadow */
       color: #fff; /* Light text color */
-      margin-bottom: 15px; /* Adjusted margin-bottom */
+      margin-bottom: 12.75px; /* Adjusted margin-bottom */
     }
 
     /* Placeholder color */
@@ -112,11 +123,11 @@
     .btn {
       color: #fff;
       background: #1DA1F0;
-      height: 40px;
-      border-radius: 20px;
+      height: 34px;
+      border-radius: 17px;
       cursor: pointer;
       font-weight: 900;
-      box-shadow: 6px 6px 6px #111, -6px -6px 6px #333; /* Neumorphic shadow */
+      box-shadow: 3.5px 3.5px 3.5px #111, -3.5px -3.5px 3.5px #333; /* Neumorphic shadow */
       transition: 0.5s;
     }
 
@@ -128,21 +139,21 @@
     /* Output area styles */
     .output-area {
       background-color: #222; /* Dark output area background */
-      padding: 5px;
-      margin-top: 20px;
+      padding: 4.25px;
+      margin-top: 17px;
       position: relative;
     }
 
     /* Output textarea styles */
     .output-area textarea {
       width: calc(100% - 22px);
-      margin-bottom: 25px; /* Adjusted margin-bottom */
-      height: 50px;
+      margin-bottom: 21.25px; /* Adjusted margin-bottom */
+      height: 42.5px;
       border: 1px solid #222; /* Dark border */
       border-radius: 4px;
-      padding: 10px;
+      padding: 8.5px;
       resize: none;
-      font-size: 14px;
+      font-size: 12.5px;
       background-color: #222; /* Dark textarea background */
       color: #fff; /* Light text color */
     }
@@ -155,10 +166,10 @@
       background-color: #24cfaa;
       color: #fff;
       border: none;
-      padding: 5px 10px;
-      border-radius: 4px;
+      padding: 4.25px;
+      border-radius: 3.4px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 11.9px;
     }
 
     /* Copy button hover effect */
@@ -169,11 +180,11 @@
     /* Reveal password styles */
     .reveal-password {
       position: absolute;
-      font-size: 12px;
-      top: 18px;
-      right: 15px;
+      font-size: 10.2px;
+      top: 15.3px;
+      right: 12.75px;
       cursor: pointer;
-      color: #007bff;
+      color: #786d92;
       z-index: 1;
 
     }
@@ -181,6 +192,66 @@
     /* Input wrapper styles */
     .input-wrapper {
       position: relative;
+    }
+
+    .starting-area,
+    .length-area {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      place-items: center;
+      margin-bottom: 12.75px; /* Adjusted margin-bottom */
+    }
+
+    .box {
+      position: relative;
+      width: 34px;
+      background: #222; /* Dark input background */
+      padding: 8.5px;
+      padding-left: 8.5px;
+      height: 34px;
+      font-size: 11.9px;
+      text-align: center;
+      border-radius: 3.4px;
+      box-shadow: inset 3.5px 3.5px 3.5px #111, inset -3.5px -3.5px 3.5px #333; /* Neumorphic inset shadow */
+      color: #5c5470; /* Light text color */
+    }
+
+    .starting-group,
+    .length-group {
+      color: #786d92; /* Light text color */
+      width: 340px;
+      margin-left: 4.25px;
+    }
+
+    /* Range slider styles */
+    .slider {
+      width: 100%;
+      height: 12.75px;
+      border-radius: 10px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 21.25px;
+      height: 21.25px;
+      border-radius: 50%;
+      background: #1DA1F0;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 21.25px;
+      height: 21.25px;
+      border-radius: 50%;
+      background: #1DA1F0;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -194,11 +265,29 @@
     <div class="inputs">
       <div class="input-wrapper">
         <!-- Input field for entering text -->
-        <input type="password" id="input" name="input" placeholder="type here..." required>
+        <input class="vault" type="password" id="input" name="input" placeholder="type here..." required>
         <!-- Span for revealing password -->
         <span class="reveal-password" onclick="revealPassword()">Show</span>
-        <!-- Input field for specifying output length -->
-        <input type="number" id="length" name="length" min="1" max="64" value="15" required style="color: #5c5470;">
+        <div class="adjust">
+          <div class="starting-area">
+            <!-- Left text input box to display starting point value -->
+            <input class="box" type="text" id="leftValue" name="leftValue" oninput="updateSlider()" placeholder="0">
+            <div class="starting-group">
+              <div>Starting Point</div>
+              <!-- Range slider for starting point -->
+              <input type="range" id="startingPoint" name="startingPoint" min="0" max="64" value="0" class="slider" oninput="updateTextInput(this.value, 'leftValue')">
+            </div>
+          </div>
+          <div class="length-area">
+            <!-- Right text input box to display length value -->
+            <input class="box" type="text" id="rightValue" name="rightValue" oninput="updateSlider()" placeholder="15">
+            <div class="length-group">
+              <div>Length</div>
+              <!-- Range slider for length -->
+              <input type="range" id="length" name="length" min="1" max="64" value="15" class="slider" oninput="updateTextInput(this.value, 'rightValue')">
+            </div>
+          </div>
+        </div>
         <!-- Button for generating Kashword -->
         <button type="button" class="btn btn-primary" onclick="generateHash()">Generate Kashword</button>
       </div>
@@ -214,28 +303,25 @@
 
   <script>
     // Function to compute SHA-256 hash of a message
-	async function sha256(message) {
-	  const msgBuffer = new TextEncoder().encode(message);
-	  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-	  const hashArray = Array.from(new Uint8Array(hashBuffer));
-	  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-	  return hashHex;
-	}
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
 
     // Function to generate Kashword
     function generateHash() {
       const inputText = document.getElementById('input').value;
-      const outputLength = parseInt(document.getElementById('length').value);
-      // Check if output length is within the valid range
-      if (outputLength < 1 || outputLength > 64) {
-        alert("Output length must be between 1 and 64 characters.");
-        return;
-      }
-      // Compute SHA-256 hash and extract first characters
+      const startingPoint = parseInt(document.getElementById('startingPoint').value);
+      const length = parseInt(document.getElementById('length').value);
+      
+      // Compute SHA-256 hash and extract characters based on starting point and length
       sha256(inputText).then(hash => {
-        const firstChars = hash.substring(0, outputLength);
+        const kashword = hash.substring(startingPoint, startingPoint + length);
         // Display Kashword in the output textarea
-        document.getElementById('output').value = firstChars;
+        document.getElementById('output').value = kashword;
       });
     }
 
@@ -247,26 +333,30 @@
     }
 
     // Function to reveal or hide password
-function revealPassword() {
-  const input = document.getElementById('input');
-  if (input.type === 'password') {
-    input.type = 'text';
-    document.querySelector('.reveal-password').innerText = 'Hide';
-    input.style.color = '#fff'; // Maintain text color
-    input.style.backgroundColor = '#222'; // Maintain background color
-    input.style.boxShadow = 'inset 6px 6px 6px #111, inset -6px -6px 6px #333'; // Maintain box shadow
-    input.style.width = '267px'; // Maintain width
-    input.style.height = '50px'; // Maintain height
-    input.style.marginBottom = '15px'; // Maintain margin
-    input.style.padding = '20px'; // Maintain padding
-    input.style.borderRadius = '15px'; // Maintain Border Radius
-    input.style.paddingRight = '15px'; // Maintain Padding Right
+    function revealPassword() {
+      const input = document.getElementById('input');
+      if (input.type === 'password') {
+        input.type = 'text';
+        document.querySelector('.reveal-password').innerText = 'Hide';
+      } else {
+        input.type = 'password';
+        document.querySelector('.reveal-password').innerText = 'Show';
+      }
+    }
 
-  } else {
-    input.type = 'password';
-    document.querySelector('.reveal-password').innerText = 'Show';
-  }
-}
+    // Function to update slider values based on text input
+    function updateSlider() {
+      const leftValue = parseInt(document.getElementById('leftValue').value);
+      const rightValue = parseInt(document.getElementById('rightValue').value);
+      document.getElementById('startingPoint').value = leftValue;
+      document.getElementById('length').value = rightValue;
+    }
+
+    // Function to update text input values based on slider positions
+    function updateTextInput(val, id) {
+      document.getElementById(id).value = val;
+    }
+
   </script>
 </body>
 </html>
