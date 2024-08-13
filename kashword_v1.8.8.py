@@ -12,7 +12,7 @@ import shutil
 length = 15
 start_from = 1 # Plaese note that 
 algorithm = "SHA256" # Please make sure that entered algorithm is available in hashlib.
-version = "1.8.7"
+version = "1.8.8"
 
 # defined
 clearpass = ""
@@ -125,7 +125,7 @@ except KeyboardInterrupt:
     print("\nKashword Stop Executing.")
     clearpass = None  # Clear password from memory
 finally:
-    print("\n[Kashword_v{}]:".format(version))
+    print("\n[Kashword_v{}]".format(version))
     print(kashword)
     clearpass = None  # Clear password from memory
     kashword = None
