@@ -197,9 +197,9 @@ except KeyboardInterrupt:
     clearpass = None  # Clear password from memory
 finally:
     print("\n[Kashword_v{}] (Kashword will be erased in 5 seconds)".format(version))
-    print(f"\r[{kashword}]", end="")
+    print(f"\r{kashword}", end="")
     time.sleep(5)
     remove = "*" * len(kashword)  # or len(remove) if using a pattern
-    print(f"\r[{remove}]", end="\n")
+    print(f"\r{remove}", end="\n")
     clearpass = None  # Clear password from memory
     kashword = None
