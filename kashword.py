@@ -9,8 +9,8 @@ import argparse
 import shutil  
 
 # Set these parameters:
-length = 15
-start_from = 1 # Plaese note that 
+length = 15 # Please Define Lenght Here
+start_from = 1 # Plaese Set Start From Here
 algorithm = "SHA256" # Please make sure that entered algorithm is available in hashlib.
 version = "1.9.0"
 loading_time = 0.005 # Time delay for the loading effect
