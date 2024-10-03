@@ -12,9 +12,10 @@ import shutil
 length = 15
 start_from = 1 # Plaese note that 
 algorithm = "SHA256" # Please make sure that entered algorithm is available in hashlib.
-version = "1.8.9"
+version = "1.9.0"
 loading_time = 0.005 # Time delay for the loading effect
 terminal_width, _ = shutil.get_terminal_size()
+password_masking = "*"
 
 # Variables for storing input parameters
 clearpass = ""
@@ -24,6 +25,8 @@ parser = argparse.ArgumentParser(description="Kashword")
 parser.add_argument("-v", action="store_true", help="Print version info")
 parser.add_argument("-l", type=int, help="Specify length")
 parser.add_argument("-c", help="Specify Cypher")
+parser.add_argument("-C", action='store_true', help="Cypher Will Entered In Clear Text")
+parser.add_argument("-P", action='store_true', help="Hide Lenght")
 parser.add_argument("-s", type=int, help="Specify starting point")
 
 args = parser.parse_args()
@@ -38,6 +41,12 @@ if args.l:
 if args.c:
     clearpass = args.c
 
+if args.C:
+    clearpass = "clear"
+
+if args.P:
+    password_masking = " "
+    
 if args.s is not None:
     start_from = args.s
 
@@ -167,7 +176,10 @@ try:
     # Get user input for a password (masked input)
     if clearpass == "":
         clearpass = getpass.getpass(prompt='Enter Cypher: ', stream=None)
-        
+
+    if clearpass == "clear":
+        clearpass = input('Enter Cypher: ')
+
     # Hash the entered password 
     hash = hashlib.new(algorithm)
     hash.update(clearpass.encode())
@@ -199,7 +211,7 @@ finally:
     print("\n[Kashword_v{}] (Kashword will be erased in 5 seconds)".format(version))
     print(f"\r{kashword}", end="")
     time.sleep(5)
-    remove = "*" * len(kashword)  # or len(remove) if using a pattern
+    remove = password_masking * len(kashword)  # or len(remove) if using a pattern
     print(f"\r{remove}", end="\n")
     clearpass = None  # Clear password from memory
     kashword = None
