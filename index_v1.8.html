@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Kashword Generator</title>
+  <!-- Link to favicon -->
+  <link rel="icon" type="image/x-icon" href="/Kashword/image/favicon.ico?">
+  <!-- Responsive viewport meta tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* CSS styles */
+
+    /* Importing Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Caveat&family=Exo:wght@500&family=Share+Tech+Mono&family=Silkscreen&display=swap');
+
+    /* General styles for the body */
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #222; /* Dark background */
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      place-items: center;
+      overflow: hidden;
+      font-family: 'Exo', sans-serif;
+      color: #fff; /* Light text color */
+    }
+
+    /* Container styles */
+    .container {
+      position: relative;
+      width: 315px;
+      height: 510px;
+      border-radius: 17px;
+      padding: 34px;
+      box-sizing: border-box;
+      background: #222; /* Dark container background */
+      box-shadow: 14px 14px 20px #111, -14px -14px 20px #333; /* Neumorphic shadow */
+    }
+
+    /* Brand logo styles */
+    .brand-logo {
+      height: 85px;
+      width: 85px;
+      object-fit: fill;
+      margin: auto;
+      border-radius: 50%;
+      box-sizing: border-box;
+      box-shadow: 7px 7px 10px #111, -7px -7px 10px #333; /* Neumorphic shadow */
+    }
+
+    /* Brand title styles */
+    .brand-title {
+      padding-top: 8.5px;
+      margin-top: 8.5px;
+      font-weight: 900;
+      font-size: 1.53rem;
+      color: #0e8ef9;
+      letter-spacing: 1px;
+    }
+
+    /* Input container styles */
+    .inputs {
+      text-align: left;
+      margin-top: 25.5px;
+    }
+
+    /* Common styles for label, input, and button */
+    label,
+    input,
+    button {
+      display: block;
+      width: 100%;
+      font-size: 11.9px;
+      padding: 0;
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    /* Styles for labels */
+    label {
+      margin-bottom: 3.4px;
+    }
+
+    label:nth-of-type(2) {
+      margin-top: 10.2px;
+    }
+	
+	.vault{
+      background: #222; /* Dark input background */
+      padding: 8.5px;
+      padding-left: 17px;
+      height: 42.5px;
+      font-size: 11.9px;
+      border-radius: 12.75px;
+      box-shadow: inset 3.5px 3.5px 3.5px #111, inset -3.5px -3.5px 3.5px #333; /* Neumorphic inset shadow */
+      color: #fff; /* Light text color */
+      margin-bottom: 12.75px; /* Adjusted margin-bottom */
+    }
+
+    /* Input styles for password, number, and textarea */
+    textarea {
+      background: #222; /* Dark input background */
+      padding: 8.5px;
+      padding-left: 17px;
+      height: 42.5px;
+      font-size: 11.9px;
+      border-radius: 12.75px;
+      box-shadow: inset 3.5px 3.5px 3.5px #111, inset -3.5px -3.5px 3.5px #333; /* Neumorphic inset shadow */
+      color: #fff; /* Light text color */
+      margin-bottom: 12.75px; /* Adjusted margin-bottom */
+    }
+
+    /* Placeholder color */
+    input::placeholder {
+      color: #5c5470;
+    }
+
+    /* Button styles */
+    .btn {
+      color: #fff;
+      background: #1DA1F0;
+      height: 34px;
+      border-radius: 17px;
+      cursor: pointer;
+      font-weight: 900;
+      box-shadow: 3.5px 3.5px 3.5px #111, -3.5px -3.5px 3.5px #333; /* Neumorphic shadow */
+      transition: 0.5s;
+    }
+
+    /* Button hover effect */
+    .btn:hover {
+      box-shadow: none;
+    }
+
+    /* Output area styles */
+    .output-area {
+      background-color: #222; /* Dark output area background */
+      padding: 4.25px;
+      margin-top: 17px;
+      position: relative;
+    }
+
+    /* Output textarea styles */
+    .output-area textarea {
+      width: calc(100% - 22px);
+      margin-bottom: 21.25px; /* Adjusted margin-bottom */
+      height: 42.5px;
+      border: 1px solid #222; /* Dark border */
+      border-radius: 4px;
+      padding: 8.5px;
+      resize: none;
+      font-size: 12.5px;
+      background-color: #222; /* Dark textarea background */
+      color: #fff; /* Light text color */
+    }
+
+    /* Copy button styles */
+    .copy-btn {
+      position: absolute;
+      bottom: 0px; /* Adjusted position */
+      right: 0px; /* Adjusted position */
+      background-color: #24cfaa;
+      color: #fff;
+      border: none;
+      padding: 4.25px;
+      border-radius: 3.4px;
+      cursor: pointer;
+      font-size: 11.9px;
+    }
+
+    /* Copy button hover effect */
+    .copy-btn:hover {
+      background-color: #02c8db;
+    }
+
+    /* Reveal password styles */
+    .reveal-password {
+      position: absolute;
+      font-size: 10.2px;
+      top: 15.3px;
+      right: 12.75px;
+      cursor: pointer;
+      color: #786d92;
+      z-index: 1;
+
+    }
+
+    /* Input wrapper styles */
+    .input-wrapper {
+      position: relative;
+    }
+
+    .starting-area,
+    .length-area {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      place-items: center;
+      margin-bottom: 12.75px; /* Adjusted margin-bottom */
+    }
+
+    .box {
+      position: relative;
+      width: 34px;
+      background: #222; /* Dark input background */
+      padding: 8.5px;
+      padding-left: 8.5px;
+      height: 34px;
+      font-size: 11.9px;
+      text-align: center;
+      border-radius: 3.4px;
+      box-shadow: inset 3.5px 3.5px 3.5px #111, inset -3.5px -3.5px 3.5px #333; /* Neumorphic inset shadow */
+      color: #5c5470; /* Light text color */
+    }
+
+    .starting-group,
+    .length-group {
+      color: #786d92; /* Light text color */
+      width: 340px;
+      margin-left: 4.25px;
+      font-size: 11.9px;
+      text-align: center;
+    }
+
+    /* Range slider styles */
+    .slider {
+      width: 100%;
+      height: 12.75px;
+      border-radius: 10px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 21.25px;
+      height: 21.25px;
+      border-radius: 50%;
+      background: #1DA1F0;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 21.25px;
+      height: 21.25px;
+      border-radius: 50%;
+      background: #1DA1F0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Brand logo -->
+    <img class="brand-logo" src="/Kashword/image/logo.png?" >
+    <!-- Brand title -->
+    <div class="brand-title">Kashword</div>
+    <!-- Inputs section -->
+    <div class="inputs">
+      <div class="input-wrapper">
+        <!-- Input field for entering text -->
+        <input class="vault" type="password" id="input" name="input" placeholder="type here..." required>
+        <!-- Span for revealing password -->
+        <span class="reveal-password" onclick="revealPassword()">Show</span>
+        <div class="adjust">
+          <div class="starting-area">
+            <!-- Left text input box to display starting point value -->
+            <input class="box" type="text" id="leftValue" name="leftValue" oninput="updateSlider()" placeholder="0">
+            <div class="starting-group">
+              <div>Starting Point</div>
+              <!-- Range slider for starting point -->
+              <input type="range" id="startingPoint" name="startingPoint" min="0" max="64" value="0" class="slider" oninput="updateTextInput(this.value, 'leftValue')">
+            </div>
+          </div>
+          <div class="length-area">
+            <!-- Right text input box to display length value -->
+            <input class="box" type="text" id="rightValue" name="rightValue" oninput="updateSlider()" placeholder="15">
+            <div class="length-group">
+              <div>Length</div>
+              <!-- Range slider for length -->
+              <input type="range" id="length" name="length" min="1" max="64" value="15" class="slider" oninput="updateTextInput(this.value, 'rightValue')">
+            </div>
+          </div>
+        </div>
+        <!-- Button for generating Kashword -->
+        <button type="button" class="btn btn-primary" onclick="generateHash()">Generate Kashword</button>
+      </div>
+    </div>
+    <!-- Output area -->
+    <div class="output-area">
+      <!-- Textarea for displaying Kashword -->
+      <textarea id="output" readonly></textarea>
+      <!-- Button for copying Kashword to clipboard -->
+      <button id="copy" class="copy-btn" onclick="copyHash()">Copy</button>
+    </div>
+  </div>
+
+  <script>
+    // Function to compute SHA-256 hash of a message
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
+
+    // Function to generate Kashword
+    function generateHash() {
+      const inputText = document.getElementById('input').value;
+      const startingPoint = parseInt(document.getElementById('startingPoint').value);
+      const length = parseInt(document.getElementById('length').value);
+      
+      // Compute SHA-256 hash and extract characters based on starting point and length
+      sha256(inputText).then(hash => {
+        const kashword = hash.substring(startingPoint, startingPoint + length);
+        // Display Kashword in the output textarea
+        document.getElementById('output').value = kashword;
+      });
+    }
+
+    // Function to copy Kashword to clipboard
+    function copyHash() {
+      const output = document.getElementById('output');
+      output.select();
+      document.execCommand('copy');
+    }
+
+    // Function to reveal or hide password
+    function revealPassword() {
+      const input = document.getElementById('input');
+      if (input.type === 'password') {
+        input.type = 'text';
+        document.querySelector('.reveal-password').innerText = 'Hide';
+      } else {
+        input.type = 'password';
+        document.querySelector('.reveal-password').innerText = 'Show';
+      }
+    }
+
+    // Function to update slider values based on text input
+    function updateSlider() {
+      const leftValue = parseInt(document.getElementById('leftValue').value);
+      const rightValue = parseInt(document.getElementById('rightValue').value);
+      document.getElementById('startingPoint').value = leftValue;
+      document.getElementById('length').value = rightValue;
+    }
+
+    // Function to update text input values based on slider positions
+    function updateTextInput(val, id) {
+      document.getElementById(id).value = val;
+    }
+
+  </script>
+</body>
+</html>
