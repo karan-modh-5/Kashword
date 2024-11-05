@@ -32,7 +32,7 @@
     .container {
       position: relative;
       width: 315px;
-      height: 510px;
+      height: 550px;
       border-radius: 17px;
       padding: 34px;
       box-sizing: border-box;
@@ -221,10 +221,10 @@
     .starting-group,
     .length-group {
       color: #786d92; /* Light text color */
-      width: 340px;
-      margin-left: 4.25px;
       font-size: 11.9px;
       text-align: center;
+	  width: 340px;
+      margin-left: 4.25px;
     }
 
     /* Range slider styles */
@@ -255,6 +255,69 @@
       background: #1DA1F0;
       cursor: pointer;
     }
+
+    .hash-area
+    {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      place-items: center;
+      margin-bottom: 12.75px; /* Adjusted margin-bottom */
+    }
+
+    .hash-label
+    {
+      color: #786d92; /* Light text color */
+      font-size: 11.9px;
+      text-align: left;
+	  width: 120px;
+      /* margin-left: 4.25px;*/
+    }
+
+      /* 
+    .hash-drop-down
+    {
+      color: #786d92; 
+      font-size: 11.9px;
+      text-align: center;
+	  width: 340px;
+    }
+	*/
+
+/* Styling the dropdown container */
+.hash-drop-down {
+  min-width: 120px;
+  appearance: none; /* Removes default dropdown styling */
+  background-color: #222; /* Darker background for dropdown */
+  color: #786d92; /* Light text color */
+  padding: 8px 12px; /* Adds padding */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: inset 2px 2px 5px #111, inset -2px -2px 5px #444; /* Neumorphic shadow */
+  border: none; /* Removes default border */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+  text-align: center;
+}
+
+/* Dropdown hover effect */
+.hash-drop-down:hover {
+  background-color: #; /* Slightly lighter background on hover */
+}
+
+/* Dropdown focus outline */
+.hash-drop-down:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #; /* Blue outline on focus */
+}
+
+/* Styling dropdown options */
+.hash-drop-down option {
+  background-color: #222; /* Background color for options */
+  color: #786d92; /* Text color */
+  padding: 10px; /* Adds padding to options */
+}
+  
   </style>
 </head>
 <body>
@@ -271,6 +334,16 @@
         <!-- Span for revealing password -->
         <span class="reveal-password" onclick="revealPassword()">Show</span>
         <div class="adjust">
+          <div class="hash-area">
+        <!-- Ha	shing Algorithm Selection -->
+			<label class="hash-label" for="algorithm">Hashing Algorithm:</label>
+			  <select id="algorithm" class="hash-drop-down" onchange="updateSliderLimits()">
+				<option value="sha-256">SHA-256</option>
+				<option value="sha-512">SHA-512</option>
+				<option value="sha-1">SHA-1</option>
+				<option value="sha-384">SHA-384</option>
+			  </select>
+		  </div>
           <div class="starting-area">
             <!-- Left text input box to display starting point value -->
             <input class="box" type="text" id="leftValue" name="leftValue" oninput="updateSlider()" placeholder="0">
@@ -303,7 +376,7 @@
     </div>
   </div>
 
-  <script>
+<script>
     // Function to compute SHA-256 hash of a message
     async function sha256(message) {
       const msgBuffer = new TextEncoder().encode(message);
@@ -313,6 +386,33 @@
       return hashHex;
     }
 
+    // Function to compute SHA-512 hash of a message
+    async function sha512(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-512', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
+	
+    // Function to compute SHA-1 hash of a message
+    async function sha1(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-1', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }	
+
+    // Function to compute SHA-384 hash of a message
+    async function sha384(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-384', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }	
+	
     // Function to generate Kashword
     function generateHash() {
       const inputText = document.getElementById('input').value;
@@ -359,6 +459,63 @@
       document.getElementById(id).value = val;
     }
 
-  </script>
+	async function generateHash() {
+	  const inputText = document.getElementById('input').value;
+	  const algorithm = document.getElementById('algorithm').value;
+	  const startingPoint = parseInt(document.getElementById('startingPoint').value);
+	  const length = parseInt(document.getElementById('length').value);
+
+	let hash;
+	  if (algorithm === 'sha-256') {
+      hash = await sha256(inputText);
+	  } else if (algorithm === 'sha-512') {
+      hash = await sha512(inputText); // Define a similar function for SHA-512 if needed
+	  } else if (algorithm === 'sha1') {
+      hash = await sha1(inputText); // Define a similar function for sha1 if needed
+	  } else if (algorithm === 'sha384') {
+      hash = await sha384(inputText); // Define a similar function for sha1 if needed
+	}
+
+	const kashword = hash.substring(startingPoint, startingPoint + length);
+	document.getElementById('output').value = kashword;
+	}
+
+function updateSliderLimits() {
+  const algorithm = document.getElementById('algorithm').value;
+  const startingPointSlider = document.getElementById('startingPoint');
+  const lengthSlider = document.getElementById('length');
+  
+  let maxLength;
+
+  // Set maxLength based on the selected algorithm
+  if (algorithm === 'sha-256') {
+    maxLength = 64;
+  } else if (algorithm === 'sha-512') {
+    maxLength = 128;
+  } else if (algorithm === 'sha-1') {
+    maxLength = 40;
+  } else if (algorithm === 'sha-384') {
+    maxLength = 96;
+  }
+
+  // Update slider maximum values based on maxLength
+  startingPointSlider.max = maxLength;
+  lengthSlider.max = maxLength;
+
+  // Reset sliders if they exceed new max
+  if (parseInt(startingPointSlider.value) > maxLength) {
+    startingPointSlider.value = 0;
+  }
+  if (parseInt(lengthSlider.value) > maxLength) {
+    lengthSlider.value = maxLength;
+  }
+
+  // Update displayed values
+  document.getElementById('leftValue').value = startingPointSlider.value;
+  document.getElementById('rightValue').value = lengthSlider.value;
+}
+
+</script>
+
 </body>
 </html>
