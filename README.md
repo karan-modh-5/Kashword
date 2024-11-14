@@ -3,6 +3,8 @@ Website: https://karan-modh-5.github.io/Kashword/
 
 Python script: https://github.com/karan-modh-5/Kashword/blob/main/kashword.py
 
+Extension: https://microsoftedge.microsoft.com/addons/detail/kashword-generator/jolloicfnlnaeghkmddnpmlhdbenhifk
+
 ## **About Kashword: Empowering Your Password Security**
 
 Welcome to Kashword, your personalized password hashing tool that puts you in control of your password logic. At Kashword, we understand the significance of password security in today's digital age. That's why we've created a unique platform that allows you to generate custom hashes based on your input, ensuring a higher level of security and privacy for your online accounts.
