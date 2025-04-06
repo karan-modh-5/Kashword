@@ -56,6 +56,16 @@ Kashword is an innovative approach to reclaim control of your passwords without 
 - **ASCII Art Logos and Progress Bar**: Enhance your experience with a stylish loading effect and visual progress indicators.
 - **Version Information**: Always know which version of Kashword you're using.
 
+## New Features (v1.9.3)
+
+- **Plaintext Prefix and Suffix**: Users can now specify a prefix and/or suffix to add before hashing, acting as a personalized salt to strengthen the hash against dictionary attacks and increase uniqueness.
+
+- **After-Hash Masking Prefix and Suffix**: You can define strings that will be inserted into the final Kashword output (after it’s hashed and masked), adding an additional security layer by disguising the original hashed password pattern.
+
+- **Clipboard Copy Support (Windows)**: On Windows, the Kashword is automatically copied to the clipboard, making it faster to paste without manual copying. This is done using native PowerShell clipboard commands, no extra modules needed.
+
+- **Reset Mode (-R)**:Useful when your device is remotely accessed or when clipboard syncing is enabled across devices. This mode copies only the clean hash (before the after-hash prefix and suffix are applied), reducing the risk of sensitive patterns leaking through synced clipboards.
+
 --- 
 
 ## Conclusion
@@ -97,11 +107,11 @@ python kashword.py
 ### Command Line Arguments
 
 - `-v` : Display the version of Kashword.
-- `-l <int>` : Specify the password length. 
-- `-c <string>` : Provide the passphrase/cypher.
-- `-c` : Enter the cypher in clear text.
-- `-P` : Disable password masking
+- `-l <int>` : Specify the password length.
 - `-s` : Set the starting point for password generation.
+- `-c` : Enter the cypher in clear text.
+- `-R` : Skip After Hash Maasking
+- `-P` : Disable password masking
 
 ---
 
@@ -111,6 +121,10 @@ You can adjust default parameters within the script:
 - `length` : Set the default password length.
 - `start_from` : Specify the starting position in the hash.
 - `algorithm` : Define the default hashing algorithm (e.g., SHA256, SHA512).
+- `plaintext_prefix` : Prefix to add before hashing
+- `plaintext_suffix` : Suffix to add before hashing
+- `after_hash_masking_prefix` : Define prefix strings that will be inserted into the final Kashword output
+- `after_hash_masking_suffix` : Define suffix strings that will be inserted into the final Kashword output
 - `loading_time` : Customize the time delay for visual effects.
 
 #### *Note:* we always recommend you to use Kashword python script if not possible then use the Kashword website. Other options are also safe and reliable, but the python script gives you more control and flexibility over the password generation process.
